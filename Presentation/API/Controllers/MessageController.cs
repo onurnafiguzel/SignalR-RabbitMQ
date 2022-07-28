@@ -12,7 +12,7 @@ namespace API.Controllers
     public class MessageController : ControllerBase
     {
         [HttpPost()]
-        public IActionResult Post(User model)
+        public IActionResult Post([FromForm] User model) //415 Media Type
         {
             ConnectionFactory factory = new ConnectionFactory();
             factory.Uri = new Uri("amqps://tzstczei:GFtaGndKJ2gCgdSyMbP01EozG2edaOOy@toad.rmq.cloudamqp.com/tzstczei");
