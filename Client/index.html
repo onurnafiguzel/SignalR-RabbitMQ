@@ -6,6 +6,17 @@
     <script src="jquery.min.js"></script>
 
     <script>  $(document).ready(() => {
+
+            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7232/messagehub").build();
+
+            connection.start();
+            connection.on("receiveMessage", message => {
+                $("div").html(message);
+                $("div").fadeIn(2000, () => {
+
+                });
+            });
+
             $("button").click(() => {
                 let email = $("#txtEmail").val();
                 let message = $("#txtMessage").val();
@@ -13,16 +24,15 @@
                     Email: email,
                     Message: message
                 }, () => {
-
                 });
             });
-
         });
     </script>
 
 </head>
 
 <body>
+    <div style="background-color: darkorchid; display:none; "> </div>
     <input type="email" id="txtEmail" placeholder="Email alanı"><br>
     <input type="text" id="txtMessage" placeholder="Mesaj alanı"> <br>
     <button>Gönder</button>
